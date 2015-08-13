@@ -1,27 +1,21 @@
 {
-    "app_name": "scummvm",
-    "services": [
-        {
-            "service_name": "scummvm",
-            "components": [
-                {
-                    "component_name": "ngrok",
-                    "image": "registry.giantswarm.io/$username/ngrok",
-                    "ports": [4040],
-                    "dependencies": [
-                        {
-                            "name": "scummvm-vnc",
-                            "port": 5900
-                        }
-                    ]
-                }
-                {
-                    "component_name": "scummvm-vnc",
-                    "image": "registry.giantswarm.io/$username/scummvm",
-                    "ports": [5900]
-                },
-                
-            ]
-        }
-    ]
+  "name": "scummvm",
+  "components": {
+    "scummvm-vnc": {
+      "image": "registry.giantswarm.io/puja/scummvm",
+      "ports": [
+        5900
+      ],
+      "domains": {
+        "5900/tcp": [
+          "scummvm-puja.gigantic.io"
+        ]
+      },
+      "env": {
+        "HOME": "/"
+      },
+      "entrypoint": "x11vnc",
+      "args": ["-forever", "-create"]
+    }
+  }
 }
