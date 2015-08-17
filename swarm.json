@@ -2,7 +2,7 @@
   "name": "scummvm",
   "components": {
     "scummvm-vnc": {
-      "image": "registry.giantswarm.io/puja/scummvm",
+      "image": "puja/scummvm",
       "ports": [
         5900
       ],
